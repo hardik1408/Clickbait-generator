@@ -4,6 +4,8 @@ The model is trained on a large dataset and has learned to predict the next word
 The Flask application is created using the Flask module.The user input is received as JSON data and parsed in the 'generate' function. 
 The 'inputText' values are extracted from the JSON data. The generated text is returned as a JSON response.
 
+> The documentation of the model is present as `Clickbait generator.pdf` in the repository
+
 ## Installing Dependencies
 + To install transformers, follow this step:
 ```
