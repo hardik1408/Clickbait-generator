@@ -59,7 +59,7 @@ python3 task7.py
   You are all set and ready to use the clickbait generator for some random text generation.
   This generator produces random text everytime you use it, even for the same seed phrase
 
-  ## Some exaples
+  ## Some examples
   ![Screenshot](examples/hardik.png)
   ![Screenshot](examples/cats_and_dogs.png)
   ![Screenshot](examples/football.png)
