@@ -51,13 +51,18 @@ python3 task7.py
 + The system will start downloading necessary files and dependencies
   ![Screenshot](one.png)
 + After all the necessary files have been downloaded, the training process will start and the number of epochs completed will be displayed.
+![Screenshot](two.png)
 + Next, the `Flask app` will start running on `http://127.0.0.1:5000`. Follow this link to open the text generator.
+ ![Screenshot](three.png)
 
   ### Bingo!!
   You are all set and ready to use the clickbait generator for some random text generation.
   This generator produces random text everytime you use it, even for the same seed phrase
 
   ## Some exaples
+  ![Screenshot](examples/hardik.png)
+  ![Screenshot](examples/cats_and_dogs.png)
+  ![Screenshot](examples/football.png)
   To see more examples, [click here](examples)
 
 
