@@ -136,17 +136,14 @@ encoded_data_test['input_ids'] = torch.cat(encoded_data_test['input_ids'], dim=0
 encoded_data_test['attention_mask'] = torch.cat(encoded_data_test['attention_mask'], dim=0)
 
 
-# Training Data
 input_ids_train = encoded_data_train['input_ids']
 attention_masks_train = encoded_data_train['attention_mask']
 labels_train = torch.tensor(train_y.values)
 
-# Validation Data
 input_ids_val = encoded_data_val['input_ids']
 attention_masks_val = encoded_data_val['attention_mask']
 labels_val = torch.tensor(val_y.values)
 
-# Testing Data
 input_ids_test = encoded_data_test['input_ids']
 attention_masks_test = encoded_data_test['attention_mask']
 labels_test = torch.tensor(test_y.values)
@@ -154,12 +151,10 @@ labels_test = torch.tensor(test_y.values)
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
-# Load the GPT-2 model and tokenizer
 model_name = 'gpt2'
 model = GPT2LMHeadModel.from_pretrained(model_name)
 tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 
-# Set the model to training mode
 model.train()
 
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-6)
@@ -167,46 +162,33 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-6)
 for epoch in range(5):
     total_loss = 0
 
-    # Loop through the training dataset
     for inputs in train_x:
-        # Tokenize the input sequence
+
         input_ids = tokenizer.encode(inputs, return_tensors='pt')
 
-        # Zero the gradients
         optimizer.zero_grad()
 
-        # Forward pass
         outputs = model(input_ids=input_ids, labels=input_ids)
         loss = outputs.loss
 
-        # Backward pass and optimization
         loss.backward()
         optimizer.step()
 
-        # Update the total loss
         total_loss += loss.item()
 
-    # Calculate the average loss for the epoch
     avg_loss = total_loss / len(train_x)
 
-    # Print the average loss for the epoch
     print(f"Epoch: {(epoch + 1)*10}, Average Loss: {avg_loss-10}")
 
-# Save the trained model
 model.save_pretrained("trained_model")
 tokenizer.save_pretrained("trained_model")
 
-# Set the model to evaluation mode
 model.eval()
 import random
 
 def generate_text(seed_phrase, max_length=50, temperature=0.7, length=100):
     input_ids = tokenizer.encode(seed_phrase, return_tensors='pt')
-
-    # Set seed for random number generator
     random.seed()
-
-    # Generate text
     output = model.generate(
         input_ids=input_ids,
         max_length=max_length + length,
@@ -220,7 +202,6 @@ def generate_text(seed_phrase, max_length=50, temperature=0.7, length=100):
     generated_ids = output[0]
     generated_text = tokenizer.decode(generated_ids, skip_special_tokens=True)
 
-    # Truncate or pad the generated text to match the desired length
     generated_text = generated_text[:length].ljust(length)
 
     return generated_text
@@ -249,15 +230,11 @@ def index():
 
 @app.route('/generate', methods=['POST'])
 def generate():
-    # Get the form data
     data = request.get_json()
 
-    # Process the data and generate the text
     # length = data['length']
     input_string = data['inputText']
-    # Your code for text generation here
     generated_text=generate_text(input_string)
-    # Return the response
     response = {
         'genString': generated_text
     }
