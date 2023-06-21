@@ -49,7 +49,7 @@ https://drive.google.com/drive/folders/1Ib3ifC4rij0C4jExjpvwHkVfgnCLOjtv?usp=dri
 python3 task7.py
 ```
 + The system will start downloading necessary files and dependencies
-  ![Screenshot](Screenshot from 2023-06-21 19-26-44.png)
+  ![Screenshot](one.png)
 + After all the necessary files have been downloaded, the training process will start and the number of epochs completed will be displayed.
 + Next, the `Flask app` will start running on `http://127.0.0.1:5000`. Follow this link to open the text generator.
 
