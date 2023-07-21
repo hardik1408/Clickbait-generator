@@ -1,4 +1,4 @@
-# Clickbait Generator - TASK 7
+# Clickbait Generator 
 This model is a text generation system based on the GPT-2 (Generative Pre-trained Transformer 2) architecture. It can generate relevant text given a seed phrase. 
 The model is trained on a large dataset and has learned to predict the next word or sequence of words based on the previous context. 
 The Flask application is created using the Flask module.The user input is received as JSON data and parsed in the 'generate' function. 
